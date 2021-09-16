@@ -15,7 +15,7 @@ class Egg{
 		pop();
 	}
 	hits(pig){
-		if(dist(pig.x,pig.y,this.x,this.y)<50){
+		if(dist(pig.x,pig.y,this.x,this.y)<60){
 			return true;
 		}
 		 

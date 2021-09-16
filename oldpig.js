@@ -7,6 +7,8 @@ class Oldpig{
 		this.vx=random(-5,5);
 		this.fine=0;
 		this.hit=false;
+		this.i;
+		this.j;
 	}
 	assests(){
 		var frames=old_pig_json.frames;
@@ -16,6 +18,11 @@ class Oldpig{
 			this.animation.push(img);
 		}
 		 
+	}
+	death(i,j){
+		this.hit=true;
+		this.i=i;
+		this.j=j;
 	}
 	show(){
 		push();
@@ -37,6 +44,16 @@ class Oldpig{
 		}
 		if(frameCount%25==0 && this.hit==false){
 			this.fine=int(random(0,2));
+		}
+		else if(this.hit==true){
+			this.fine++;
+		}
+		if(this.fine==7){
+			this.hit=false;
+			this.fine=0;
+			oldPig.splice(this.j,1);
+			 
+
 		}
 		
 

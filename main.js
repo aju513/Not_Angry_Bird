@@ -53,9 +53,13 @@ function draw() {
     egg_number[i].show();
   }
   bird.move_hori();
-  for(var i=0;i<total;i++){
+  for(var i=0;i<smallPig.length;i++){
     smallPig[i].show();
+    
+  }
+  for(var i=0;i<oldPig.length;i++){
     oldPig[i].show();
+    
   }
   //collision between egg and pig
   for(var i=0;i<egg_number.length;i++){
@@ -65,15 +69,30 @@ function draw() {
        
         smallPig[j].fine=4;
         smallPig[j].hit=true;
+        egg_number.splice(i,1);
+        smallPig[j].death(j);
+        break;
      }
      //for old pig
-     if(egg_number[i].hits(oldPig[j])==true){
-       
-      oldPig[j].fine=4;
-      oldPig[j].hit=true;
-   }
+   
     }
   }
+  for(var i=0;i<egg_number.length;i++){
+    for(var j=0;j<oldPig.length;j++){
+      //for smmall pig
+      if(egg_number[i].hits(oldPig[j])==true){
+       
+        oldPig[j].fine=4;
+        oldPig[j].hit=true;
+        egg_number.splice(i,1);
+        oldPig[j].death(i,j);
+        break;
+     }
+     //for old pig
+   
+    }
+  }
+ 
   
   frameRate(15);
 }

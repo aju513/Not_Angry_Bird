@@ -7,6 +7,7 @@ class Smallpig{
 		this.vx=random(-4,4);
 		this.hit=false;
 		this.fine=0;
+		this.j;
 		
 	}
 	assests(){
@@ -17,6 +18,10 @@ class Smallpig{
 			this.animation.push(img);
 		}
 		 
+	}
+	death(j){
+		this.hit=true;
+		this.j=j
 	}
 	
 	show(){
@@ -38,6 +43,14 @@ class Smallpig{
 		}
 		if(frameCount%50==0 && this.hit==false){
 			this.fine=int(random(0,3));
+		}
+		if(this.hit==true){
+			this.fine++;
+		}
+		if(this.fine==7){
+			this.hit=false;
+			this.fine=0;
+			smallPig.splice(this.j,1);
 		}
 		  
 	

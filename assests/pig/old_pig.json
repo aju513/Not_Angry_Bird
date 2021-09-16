@@ -46,7 +46,7 @@
 	      },
 	  
 	      {
-		"name": "sprite-06",
+		"name": "sprite-05",
 		"position": {
 		  "x": 168,
 		  "y": 280,
@@ -55,7 +55,7 @@
 		}
 	      },
 	      {
-		"name": "sprite-07",
+		"name": "sprite-06",
 		"position": {
 		  "x": 168,
 		  "y": 155,
