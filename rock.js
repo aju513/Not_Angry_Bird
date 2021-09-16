@@ -5,6 +5,12 @@ class Rock{
 		this.vel=random(10,20);
 	 
 	}
+	hits(bird){
+		if(dist(bird.x,bird.y,this.x,this.y)<30){
+			return true;
+		}
+
+	}
 	show(){
 
 		let img1=pig_sprite.get(0,707,25,20);

@@ -95,12 +95,22 @@ function draw() {
   if(frameCount%60==0){
     for(let i=0;i<oldPig.length;i++){
         rock.push(new Rock(oldPig[i]));
+
     }
     for(let i=0;i<smallPig.length;i++){
       rock.push(new Rock(smallPig[i]));
     }
   }
   for(let i=0;i<rock.length;i++){
+    if(rock[i].hits(bird)==true){
+      bird.fine=3;
+      console.log('hits');
+      bird.vel=0;
+      oldPig=[];
+      smallPig=[];
+      rock=[];
+      break;
+    }
       rock[i].show();
   }
 
@@ -110,6 +120,7 @@ function draw() {
 
 function mousePressed(){
   bird.move();
+  bird.fine=1;
   if(count%2==0){
   egg_number.push(new Egg(bird.x,bird.y));
   }
@@ -118,6 +129,7 @@ function mousePressed(){
 function keyPressed(){
   if(key=='w'){
     bird.move();
+    bird.fine=1;
     bird.vel=0;
   }
   if(key=='a'){

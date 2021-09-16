@@ -5,6 +5,7 @@ class Bird{
 		this.gravity=11;
 		this.x=0;this.y=0;
 		this.vel=0;
+		this.fine=0;
 	}
 	assests(){
 		var frames=spritejson.frames;
@@ -24,7 +25,7 @@ class Bird{
 		if(this.x<0){
 			this.x=0;
 		}
-		image(this.animation[count%2],this.x,this.y);
+		image(this.animation[this.fine],this.x,this.y);
 		this.y+=this.gravity;
 		pop();
 	}
