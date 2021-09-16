@@ -18,6 +18,12 @@ class Bird{
 	}
 	show(){
 		push();
+		if(this.x>width-100){
+			this.x=width-100;
+		}
+		if(this.x<0){
+			this.x=0;
+		}
 		image(this.animation[count%2],this.x,this.y);
 		this.y+=this.gravity;
 		pop();
