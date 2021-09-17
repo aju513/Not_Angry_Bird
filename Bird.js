@@ -25,6 +25,9 @@ class Bird{
 		if(this.x<0){
 			this.x=0;
 		}
+		if(this.y<0){
+			this.y=0;
+		}
 		image(this.animation[this.fine],this.x,this.y);
 		this.y+=this.gravity;
 		pop();

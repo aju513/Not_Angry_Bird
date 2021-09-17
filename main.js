@@ -22,6 +22,12 @@ var rock=[];
 
 var score=0;
 var gameOver=false;
+//mainboss
+var main_boss_json;
+var mainBoss=[];
+var first_blocker=false;
+var second_blocker=false;
+var third_blocker=false;
 
 
 
@@ -36,14 +42,18 @@ function preload(){
   pig_sprite=loadImage('assests/pig/small_pig.png');
   pig_json=loadJSON('assests/pig/simple_pig.json');
   old_pig_json=loadJSON('assests/pig/old_pig.json');
+  //mainboss
+  main_boss_json=loadJSON('assests/pig/main_boss.json');
   backgroundImage=loadImage('assests/back.jpg');
+
+
 }
  
 function setup() {
   createCanvas(1364,700);
   bird=new Bird();
   bird.assests();
-  
+ 
   for(var i=0;i<total;i++){
       smallPig.push(new Smallpig());
       oldPig.push(new Oldpig());
@@ -58,9 +68,10 @@ function setup() {
 function draw() {
   backgroundImage.resize(1364,700);
   image(backgroundImage,0,0);
- 
   bird.show();
   bird.move_hori();
+  blocker();
+  blocker_show();
   egg_loader();
   pig_loader();
   collision_egg_pigs();
@@ -68,48 +79,51 @@ function draw() {
   gameend();
   more_spawn();
   gameend_below();
-  frameRate(15);
+ 
   text_display();
-  count++;
-  egg_throw_speed();
   
-  
+ 
+
+  frameRate(15);
 }
 
 //controls
 function mousePressed(){
   bird.move_ver();
  
-  if(egg_ready==true){
-  
+
+    bird.fine=1;
     egg_number.push(new Egg(bird.x,bird.y));
-    count=0;
-    egg_ready=false;
-  }
+ 
+  
 
 }
 function keyPressed(){
   if(key=='w'){
     bird.move();
-    bird.fine=1;
+    bird.fine=2;
     bird.vel=0;
   }
   if(key=='a'){
+    bird.fine=[1];
     bird.vel=-10;
   }
   if(key=='d'){
+    bird.fine=[0];
     bird.vel=10;
   }
 }
 //textdisplay
 function text_display(){
-  text(score,12,12);
-  if(egg_ready==false){
-    text("not ready",30,30);
-  }
-  else if(egg_ready==true){
-    text("ready",30,30);
-  }
+ 
+  textSize(50);
+  text(score,width/2,55);
+  textSize(10);
+  text('Use W A S to move',0,10);
+  text('Use Mouse to fly a little and trow egg',0,20);
+  text('Giant Pig is there to block and cant be killed',0,30);
+  text('Hit as many pigs as you can');
+
 }
 
 //shortcut functions  
@@ -163,6 +177,40 @@ function collision_egg_pigs(){
         break;
      }
     }
+  }
+  for(var i=0;i<egg_number.length;i++){
+    
+    for(var j=0;j<mainBoss.length;j++){
+      if(egg_number[i].hits(mainBoss[j])==true){
+        egg_number.splice(i,1);
+        break;
+     }
+    }
+    
+  
+  }
+}
+function blocker(){
+  if(score>=20 && first_blocker==false){
+    mainBoss.push(new MainBoss());
+    first_blocker=true;
+  }
+  if(score>=100 && second_blocker==false){
+    mainBoss.push(new MainBoss());
+    second_blocker=true;
+  }
+  if(score==200 && third_blocker==false){
+    mainBoss.push(new MainBoss());
+    third_blocker=true;
+
+  }
+  console.log(mainBoss.length);
+}
+function blocker_show(){
+  for(let i=0;i<mainBoss.length;i++){
+    mainBoss[i].assests();
+    mainBoss[i].show();
+
   }
 }
 
@@ -233,6 +281,7 @@ function gameend_below(){
     oldPig=[];
     smallPig=[];
     rock=[];
+    mainBoss=[];
     gameOver=true;
     gameover.style.display='block';
   }

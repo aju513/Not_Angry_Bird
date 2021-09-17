@@ -5,6 +5,7 @@ function myFunction(){
 	gameover.style.display="none";
 
 	document.getElementById('change').innerHTML=score;
+  score=0;
 	bird=new Bird();
 	bird.assests();
 	gameOver=false;
