@@ -1,7 +1,7 @@
 class Bird{
 	constructor(){
 		this.animation=[];
-		this.up=60;
+		this.up=100;
 		this.gravity=11;
 		this.x=0;this.y=0;
 		this.vel=0;
@@ -31,6 +31,9 @@ class Bird{
 	}
 	move(){
 		this.y-=this.up;
+	}
+	move_ver(){
+		this.y-=50;
 	}
 	move_hori(){
 		this.x+=this.vel;

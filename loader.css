@@ -1,0 +1,26 @@
+*{
+	font-family: 'Quicksand', sans-serif;
+	
+}
+h1{
+	font-size: 4rem;
+	text-align: center;
+	padding:4rem;
+}
+.play a{
+	text-decoration: none;
+	color: inherit;
+	font-size: 2rem;
+	padding:1rem;
+
+
+}
+.play a:hover{
+	background-color: khaki;
+}
+.play{
+	text-align:center;
+}
+.tuto{
+	text-align: center;
+}

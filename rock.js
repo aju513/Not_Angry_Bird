@@ -6,7 +6,7 @@ class Rock{
 	 
 	}
 	hits(bird){
-		if(dist(bird.x,bird.y,this.x,this.y)<30){
+		if(dist(bird.x,bird.y,this.x,this.y)<42){
 			return true;
 		}
 
